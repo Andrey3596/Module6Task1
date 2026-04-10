@@ -3,6 +3,8 @@ namespace Mod6
     public partial class Form1 : Form
     {
         List<Particle> particles = new List<Particle>();
+        private int MousePositionX = 0;
+        private int MousePositionY = 0;
         public Form1()
         {
             InitializeComponent();
@@ -30,8 +32,10 @@ namespace Mod6
                                     // если здоровье кончилось
                 if (particle.Life < 0)
                 {
-                    // восстанавливаю здоровье
-                    particle.Life = 20 + Particle.rand.Next(100);
+                    particle.Life = 20 + Particle.rand.Next(100); // это не трогаем
+                                                                  // новое начальное расположение частицы — это то, куда указывает курсор
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY
                     // перемещаю частицу в центр
                     particle.X = picDisplay.Image.Width / 2;
                     particle.Y = picDisplay.Image.Height / 2;
@@ -73,6 +77,12 @@ namespace Mod6
             }
 
             picDisplay.Invalidate();
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionX = e.X;
+            MousePositionY = e.Y;
         }
     }
 }
