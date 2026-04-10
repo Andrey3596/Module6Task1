@@ -12,15 +12,15 @@ namespace Mod6
 
 
             // генерирую 500 частиц
-            for (var i = 0; i < 500; ++i)
-            {
-                var particle = new Particle();
-                // переношу частицы в центр изображения
-                particle.X = picDisplay.Image.Width / 2;
-                particle.Y = picDisplay.Image.Height / 2;
-                // добавляю список
-                particles.Add(particle);
-            }
+            //for (var i = 0; i < 500; ++i)
+            //{
+            //    var particle = new Particle();
+            //    // переношу частицы в центр изображения
+            //    particle.X = picDisplay.Image.Width / 2;
+            //    particle.Y = picDisplay.Image.Height / 2;
+            //    // добавляю список
+            //    particles.Add(particle);
+            //}
         }
 
 
@@ -51,6 +51,24 @@ namespace Mod6
                     var directionInRadians = particle.Direction / 180 * Math.PI;
                     particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
                     particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                }
+            }
+
+
+            // добавил генерацию частиц
+            // генерирую не более 10 штук за тик
+            for (var i = 0; i < 10; ++i)
+            {
+                if (particles.Count < 500) // пока частиц меньше 500 генерируем новые
+                {
+                    var particle = new Particle();
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY;
+                    particles.Add(particle);
+                }
+                else
+                {
+                    break; // а если частиц уже 500 штук, то ничего не генерирую
                 }
             }
         }
