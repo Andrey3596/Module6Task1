@@ -35,10 +35,10 @@ namespace Mod6
                     particle.Life = 20 + Particle.rand.Next(100); // это не трогаем
                                                                   // новое начальное расположение частицы — это то, куда указывает курсор
                     particle.X = MousePositionX;
-                    particle.Y = MousePositionY
+                    particle.Y = MousePositionY;
                     // перемещаю частицу в центр
-                    particle.X = picDisplay.Image.Width / 2;
-                    particle.Y = picDisplay.Image.Height / 2;
+                    //particle.X = picDisplay.Image.Width / 2;
+                    //particle.Y = picDisplay.Image.Height / 2;
 
                     // делаю рандомное направление, скорость и размер
                     particle.Direction = Particle.rand.Next(360);
