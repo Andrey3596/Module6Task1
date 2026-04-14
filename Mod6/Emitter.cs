@@ -10,10 +10,11 @@ namespace Mod6
     {
 
         public float GravitationX = 0;
-        public float GravitationY = 1;
+        public float GravitationY = 0;
 
         List<Particle> particles = new List<Particle>();
-        public List<Point> gravityPoints = new List<Point>();
+        //public List<Point> gravityPoints = new List<Point>();
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
         public int MousePositionX;
         public int MousePositionY;
 
@@ -42,20 +43,10 @@ namespace Mod6
                 else
                 {
 
-
-                    // сделаем сначала для одной точки
-                    // и так считаем вектор притяжения к точке
-                    float gX = gravityPoints[0].X - particle.X;
-                    float gY = gravityPoints[0].Y - particle.Y;
-
-                    // считаем квадрат расстояния между частицей и точкой r^2
-                    float r2 = gX * gX + gY * gY;
-                    float M = 100; // сила притяжения к точке, пусть 100 будет
-
-                    // пересчитываем вектор скорости с учетом притяжения к точке
-                    particle.SpeedX += (gX) * M / r2;
-                    particle.SpeedY += (gY) * M / r2;
-
+                    foreach (var point in impactPoints)
+                    {
+                        point.ImpactParticle(particle);
+                    }
                     // а это старый код, его не трогаем
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
@@ -97,15 +88,16 @@ namespace Mod6
                 particle.Draw(g);
             }
 
-            foreach (var point in gravityPoints)
+            foreach (var point in impactPoints)
             {
-                g.FillEllipse(
-                    new SolidBrush(Color.Red),
-                    point.X - 5,
-                    point.Y - 5,
-                    10,
-                    10
-                );
+                //g.FillEllipse(
+                //    new SolidBrush(Color.Red),
+                //    point.X - 5,
+                //    point.Y - 5,
+                //    10,
+                //    10
+                //);
+                point.Render(g);
             }
         }
     }
