@@ -17,7 +17,7 @@ namespace Mod6
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
         public int MousePositionX;
         public int MousePositionY;
-
+        public int ParticlesCount = 500;
         public void UpdateState()
         {
             foreach (var particle in particles)
@@ -62,7 +62,7 @@ namespace Mod6
             // генерирую не более 10 штук за тик
             for (var i = 0; i < 10; ++i)
             {
-                if (particles.Count < 500) // пока частиц меньше 500 генерируем новые
+                if (particles.Count < ParticlesCount) // пока частиц меньше 500 генерируем новые
                 {
                     //// а у тут уже наш новый класс используем
                     //var particle = new ParticleColorful();
