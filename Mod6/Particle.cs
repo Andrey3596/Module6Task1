@@ -16,8 +16,7 @@ namespace Mod6
         public float Y; // Y координата положения частицы в пространстве
 
 
-        //public float Direction; // направление движения
-        //public float Speed; // скорость перемещения
+
         public float SpeedX; // скорость перемещения по оси X
         public float SpeedY; // скорость перемещения по оси Y
 
@@ -30,8 +29,7 @@ namespace Mod6
         // конструктор по умолчанию будет создавать кастомную частицу
         public Particle()
         {
-            //Direction = rand.Next(360);
-            //Speed = 1 + rand.Next(10);
+
             // генерируем произвольное направление и скорость
             var direction = (double)rand.Next(360);
             var speed = 1 + rand.Next(10);

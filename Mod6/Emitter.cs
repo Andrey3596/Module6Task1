@@ -13,6 +13,7 @@ namespace Mod6
         public float GravitationY = 1;
 
         List<Particle> particles = new List<Particle>();
+        public List<Point> gravityPoints = new List<Point>();
         public int MousePositionX;
         public int MousePositionY;
 
@@ -28,13 +29,7 @@ namespace Mod6
                                                                   // новое начальное расположение частицы — это то, куда указывает курсор
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
-                    // перемещаю частицу в центр
-                    //particle.X = picDisplay.Image.Width / 2;
-                    //particle.Y = picDisplay.Image.Height / 2;
-
-                    // делаю рандомное направление, скорость и размер
-                    //particle.Direction = Particle.rand.Next(360);
-                    //particle.Speed = 1 + Particle.rand.Next(10);
+                    
 
                     var direction = (double)Particle.rand.Next(360);
                     var speed = 1 + Particle.rand.Next(10);
@@ -46,15 +41,25 @@ namespace Mod6
                 }
                 else
                 {
-                    // а это наш старый код
-                    //var directionInRadians = particle.Direction / 180 * Math.PI;
-                    //particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
-                    //particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
 
+
+                    // сделаем сначала для одной точки
+                    // и так считаем вектор притяжения к точке
+                    float gX = gravityPoints[0].X - particle.X;
+                    float gY = gravityPoints[0].Y - particle.Y;
+
+                    // считаем квадрат расстояния между частицей и точкой r^2
+                    float r2 = gX * gX + gY * gY;
+                    float M = 100; // сила притяжения к точке, пусть 100 будет
+
+                    // пересчитываем вектор скорости с учетом притяжения к точке
+                    particle.SpeedX += (gX) * M / r2;
+                    particle.SpeedY += (gY) * M / r2;
+
+                    // а это старый код, его не трогаем
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    // это не трогаем
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
@@ -90,6 +95,17 @@ namespace Mod6
             foreach (var particle in particles)
             {
                 particle.Draw(g);
+            }
+
+            foreach (var point in gravityPoints)
+            {
+                g.FillEllipse(
+                    new SolidBrush(Color.Red),
+                    point.X - 5,
+                    point.Y - 5,
+                    10,
+                    10
+                );
             }
         }
     }
