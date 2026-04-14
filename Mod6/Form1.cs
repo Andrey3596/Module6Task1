@@ -61,7 +61,11 @@ namespace Mod6
             {
                 if (particles.Count < 500) // пока частиц меньше 500 генерируем новые
                 {
-                    var particle = new Particle();
+                    // а у тут уже наш новый класс используем
+                    var particle = new ParticleColorful();
+                    // ну и цвета меняем
+                    particle.FromColor = Color.Yellow;
+                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
                     particles.Add(particle);
@@ -90,7 +94,8 @@ namespace Mod6
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White);
+                
+                g.Clear(Color.Black);
                 Render(g); // рендерим систему
             }
 
