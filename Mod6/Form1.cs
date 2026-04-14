@@ -1,3 +1,5 @@
+using static Mod6.Emitter;
+
 namespace Mod6
 {
     public partial class Form1 : Form
@@ -6,12 +8,18 @@ namespace Mod6
         private int MousePositionX = 0;
         private int MousePositionY = 0;
 
-        Emitter emitter = new Emitter();
+        Emitter emitter;
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
+
+            emitter = new TopEmitter
+            {
+                Width = picDisplay.Width,
+                GravitationY = 0.25f
+            };
             // гравитон
             emitter.impactPoints.Add(new GravityPoint
             {
