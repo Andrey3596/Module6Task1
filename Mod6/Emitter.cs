@@ -8,6 +8,10 @@ namespace Mod6
 {
     class Emitter
     {
+
+        public float GravitationX = 0;
+        public float GravitationY = 1;
+
         List<Particle> particles = new List<Particle>();
         public int MousePositionX;
         public int MousePositionY;
@@ -47,6 +51,10 @@ namespace Mod6
                     //particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
                     //particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
 
+                    particle.SpeedX += GravitationX;
+                    particle.SpeedY += GravitationY;
+
+                    // это не трогаем
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
