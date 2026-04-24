@@ -28,11 +28,11 @@ namespace Mod6
             };
 
             // РАДАР
-            emitter.impactPoints.Add(new RadarPoint
-            {
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2
-            });
+            //emitter.impactPoints.Add(new RadarPoint
+            //{
+            //    X = picDisplay.Width / 2,
+            //    Y = picDisplay.Height / 2
+            //});
 
             emitter.impactPoints.Add(new ColorPoint
             {
@@ -69,6 +69,15 @@ namespace Mod6
             {
                 X = picDisplay.Width / 2 - 330,
                 Y = picDisplay.Height / 2 - 100
+            });
+
+
+
+
+            emitter.impactPoints.Add(new DelitePoint
+            {
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2+100
             });
 
             //// гравитон

@@ -235,7 +235,7 @@ namespace Mod6
 
     public class DelitePoint : IImpactPoint
     {
-        public int Radar = 100;
+        public int Radar = 50;
         public int CountDead = 0;
 
         public override void ImpactParticle(Particle particle)
@@ -244,7 +244,7 @@ namespace Mod6
             float gY = Y - particle.Y;
             double r = Math.Sqrt(gX * gX + gY * gY);
 
-            if (r + particle.Radius < Radar / 2) // если частица оказалось внутри окружности
+            if (r + particle.Radius < Radar) // если частица оказалось внутри окружности
             {
                 
                 particle.Life = 0;
@@ -258,8 +258,8 @@ namespace Mod6
             
             g.DrawEllipse(
                    new Pen(Color.Red),
-                   X - Radar / 2,
-                   Y - Radar / 2,
+                   X - Radar/2,
+                   Y - Radar/2,
                    Radar,
                    Radar
              );
@@ -272,13 +272,7 @@ namespace Mod6
             var text = $"Я убил\n {CountDead}";
             var font = new Font("Verdana", 10);
             var size = g.MeasureString(text, font);    
-            g.FillRectangle(
-                new SolidBrush(Color.Red),
-                X - size.Width / 2, 
-                Y - size.Height / 2,
-                size.Width,
-                size.Height
-            );
+            
 
             g.DrawString(
                 text,
