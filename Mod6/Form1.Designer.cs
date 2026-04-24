@@ -48,7 +48,7 @@
             picDisplay.Size = new Size(776, 426);
             picDisplay.TabIndex = 0;
             picDisplay.TabStop = false;
-            picDisplay.MouseMove += picDisplay_MouseMove;
+            //picDisplay.MouseMove += picDisplay_MouseMove;
             // 
             // timer1
             // 
@@ -63,7 +63,7 @@
             tbDirection.Name = "tbDirection";
             tbDirection.Size = new Size(214, 45);
             tbDirection.TabIndex = 1;
-            tbDirection.Scroll += tbDirection_Scroll;
+            //tbDirection.Scroll += tbDirection_Scroll;
             // 
             // lblDirection
             // 
@@ -79,7 +79,7 @@
             tbGraviton.Name = "tbGraviton";
             tbGraviton.Size = new Size(104, 45);
             tbGraviton.TabIndex = 3;
-            tbGraviton.Scroll += tbGraviton_Scroll;
+            //tbGraviton.Scroll += tbGraviton_Scroll;
             // 
             // tbGraviton2
             // 
@@ -88,7 +88,7 @@
             tbGraviton2.Name = "tbGraviton2";
             tbGraviton2.Size = new Size(116, 45);
             tbGraviton2.TabIndex = 4;
-            tbGraviton2.Scroll += tbGraviton2_Scroll;
+            //tbGraviton2.Scroll += tbGraviton2_Scroll;
             // 
             // Form1
             // 

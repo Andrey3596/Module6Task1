@@ -11,8 +11,8 @@ namespace Mod6
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; // добавим поле дл€ эмиттера
 
-        GravityPoint point1; // добавил поле под первую точку
-        GravityPoint point2; // добавил поле под вторую точку
+        //GravityPoint point1; // добавил поле под первую точку
+        //GravityPoint point2; // добавил поле под вторую точку
 
 
         public Form1()
@@ -21,11 +21,56 @@ namespace Mod6
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
 
-            //emitter = new TopEmitter
-            //{
-            //    Width = picDisplay.Width,
-            //    GravitationY = 0.25f
-            //};
+            emitter = new TopEmitter
+            {
+                Width = picDisplay.Width,
+                GravitationY = 0.25f
+            };
+
+            // –јƒј–
+            emitter.impactPoints.Add(new RadarPoint
+            {
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2
+            });
+
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2 - 100
+            });
+
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2 + 110,
+                Y = picDisplay.Height / 2 - 100
+            });
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2 - 110,
+                Y = picDisplay.Height / 2 - 100
+            });
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2 + 220,
+                Y = picDisplay.Height / 2 - 100
+            });
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2 - 220,
+                Y = picDisplay.Height / 2 - 100
+            });
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2 + 330,
+                Y = picDisplay.Height / 2 - 100
+            });
+            emitter.impactPoints.Add(new ColorPoint
+            {
+                X = picDisplay.Width / 2 - 330,
+                Y = picDisplay.Height / 2 - 100
+            });
+
             //// гравитон
             //emitter.impactPoints.Add(new GravityPoint
             //{
@@ -48,37 +93,37 @@ namespace Mod6
             //});
 
 
-            this.emitter = new Emitter // создаю эмиттер и прив€зываю его к полю emitter
-            {
-                Direction = 0,
-                Spreading = 10,
-                SpeedMin = 10,
-                SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
-                ParticlesPerTick = 10,
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2,
-            };
+            //this.emitter = new Emitter // создаю эмиттер и прив€зываю его к полю emitter
+            //{
+            //    Direction = 0,
+            //    Spreading = 10,
+            //    SpeedMin = 10,
+            //    SpeedMax = 10,
+            //    ColorFrom = Color.Gold,
+            //    ColorTo = Color.FromArgb(0, Color.Red),
+            //    ParticlesPerTick = 10,
+            //    X = picDisplay.Width / 2,
+            //    Y = picDisplay.Height / 2,
+            //};
 
-            emitters.Add(this.emitter); // все равно добавл€ю в список emitters, чтобы он рендерилс€ и обновл€лс€
+            //emitters.Add(this.emitter); // все равно добавл€ю в список emitters, чтобы он рендерилс€ и обновл€лс€
 
 
             // прив€зываем гравитоны к пол€м
-            point1 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 + 100,
-                Y = picDisplay.Height / 2,
-            };
-            point2 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2,
-            };
+            //point1 = new GravityPoint
+            //{
+            //    X = picDisplay.Width / 2 + 100,
+            //    Y = picDisplay.Height / 2,
+            //};
+            //point2 = new GravityPoint
+            //{
+            //    X = picDisplay.Width / 2 - 100,
+            //    Y = picDisplay.Height / 2,
+            //};
 
             // прив€зываем пол€ к эмиттеру
-            emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
+            //emitter.impactPoints.Add(point1);
+            //emitter.impactPoints.Add(point2);
         }
 
 
@@ -98,34 +143,34 @@ namespace Mod6
             picDisplay.Invalidate();
         }
 
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        {
-            // это не трогаем
-            foreach (var emitter in emitters)
-            {
-                emitter.MousePositionX = e.X;
-                emitter.MousePositionY = e.Y;
-            }
+        //private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    // это не трогаем
+        //    foreach (var emitter in emitters)
+        //    {
+        //        emitter.MousePositionX = e.X;
+        //        emitter.MousePositionY = e.Y;
+        //    }
 
-            // а тут передаем положение мыши, в положение гравитона
-            point2.X = e.X;
-            point2.Y = e.Y;
-        }
+        //    // а тут передаем положение мыши, в положение гравитона
+        //    //point2.X = e.X;
+        //    //point2.Y = e.Y;
+        //}
 
-        private void tbDirection_Scroll(object sender, EventArgs e)
-        {
-            emitter.Direction = tbDirection.Value; // направлению эмиттера присваиваем значение ползунка 
-            lblDirection.Text = $"{tbDirection.Value}∞"; // добавил вывод значени€
-        }
+        //private void tbDirection_Scroll(object sender, EventArgs e)
+        //{
+        //    emitter.Direction = tbDirection.Value; // направлению эмиттера присваиваем значение ползунка 
+        //    lblDirection.Text = $"{tbDirection.Value}∞"; // добавил вывод значени€
+        //}
 
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            point1.Power = tbGraviton.Value;
-        }
+        //private void tbGraviton_Scroll(object sender, EventArgs e)
+        //{
+        //    point1.Power = tbGraviton.Value;
+        //}
 
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
-        {
-            point2.Power = tbGraviton2.Value;
-        }
+        //private void tbGraviton2_Scroll(object sender, EventArgs e)
+        //{
+        //    point2.Power = tbGraviton2.Value;
+        //}
     }
 }

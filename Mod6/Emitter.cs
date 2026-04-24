@@ -117,7 +117,7 @@ namespace Mod6
         {
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
 
-            particle.X = X;
+            particle.X = X; //MousePositionX
             particle.Y = Y;
 
             var direction = Direction
@@ -130,6 +130,7 @@ namespace Mod6
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
             particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
+            
         }
 
         /* добавил метод */
@@ -149,6 +150,13 @@ namespace Mod6
             public override void ResetParticle(Particle particle)
             {
                 base.ResetParticle(particle); // вызываем базовый сброс частицы, там жизнь переопределяется и все такое
+                
+                if (particle is ParticleColorful colorful)
+                {
+                    colorful.InColorPoint = false;
+                    colorful.InRadar = false;
+                    // ColorPoint не нужно сбрасывать – при следующем попадании перезапишется
+                }
 
                 // а теперь тут уже подкручиваем параметры движения
                 particle.X = Particle.rand.Next(Width); // позиция X -- произвольная точка от 0 до Width

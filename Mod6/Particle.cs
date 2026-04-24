@@ -29,7 +29,7 @@ namespace Mod6
         // конструктор по умолчанию будет создавать кастомную частицу
         public Particle()
         {
-
+        
             // генерируем произвольное направление и скорость
             var direction = (double)rand.Next(360);
             var speed = 1 + rand.Next(10);
@@ -69,9 +69,12 @@ namespace Mod6
             // два новых поля под цвет начальный и конечный
          public Color FromColor;
          public Color ToColor;
+         public Color ColorPoint;
+         public bool InRadar = false;
+         public bool InColorPoint = false;
 
-            // для смеси цветов
-         public static Color MixColor(Color color1, Color color2, float k)
+        // для смеси цветов
+        public static Color MixColor(Color color1, Color color2, float k)
             {
                 return Color.FromArgb(
                     (int)(color2.A * k + color1.A * (1 - k)),
@@ -85,9 +88,18 @@ namespace Mod6
          public override void Draw(Graphics g)
             {
                 float k = Math.Min(1f, Life / 100);
-
+                Color color;
                 // так как k уменьшается от 1 до 0, то порядок цветов обратный
-                var color = MixColor(ToColor, FromColor, k);
+                if (InColorPoint)
+                {
+                    // подсветка – ярко-зелёный, не зависящий от жизни
+                    color = ColorPoint;
+                }
+                else
+                {
+                    color = MixColor(ToColor, FromColor, k);
+                }
+                
                 var b = new SolidBrush(color);
 
                 g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
