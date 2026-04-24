@@ -117,31 +117,35 @@ namespace Mod6
             float gY = Y - particle.Y;
             double r = Math.Sqrt(gX * gX + gY * gY);
 
-            if (r + particle.Radius < Radar / 2) // если частица оказалось внутри окружности
+            ParticleColorful colorful = particle as ParticleColorful;
+
+            if (r + particle.Radius < Radar / 2 ) // если частица оказалось внутри окружности
             {
                 // Помечаем, что частица внутри радара (для подсветки)
-                if (particle is ParticleColorful colorful)
+                if (!colorful.InRadar)
                 {
                     colorful.InRadar = true;   // это поле добавим ниже
                     count++;
+
                 }
             }
-            else
+
+            if (!(r + particle.Radius < Radar / 2)) // если частица оказалось внутри окружности
             {
-                // Если частица вне зоны – снимаем пометку
-                if (particle is ParticleColorful colorful)
-                    colorful.InRadar = false;
+                // Помечаем, что частица внутри радара (для подсветки)
+                if (colorful.InRadar)
+                {
+                    colorful.InRadar = false;   // это поле добавим ниже
+                    count--;
+                }
             }
         }
-        public void Reset()
-        {
-            count = 0;
-        }
+        
         public override void Render(Graphics g)
         {
             // буду рисовать окружность с диаметром равным Power
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(Color.Green),
                    X - Radar / 2,
                    Y - Radar / 2,
                    Radar,
@@ -158,14 +162,6 @@ namespace Mod6
             // вызываем MeasureString, чтобы померить размеры текста
             var size = g.MeasureString(text, font);
 
-            // рисуем подложнку под текст
-            g.FillRectangle(
-                new SolidBrush(Color.Red),
-                X - size.Width / 2, // так как я выравнивал текст по центру то подложка должна быть центрирована относительно X,Y
-                Y - size.Height / 2,
-                size.Width,
-                size.Height
-            );
 
             // ну и текст рисую уже на базе переменных
             g.DrawString(
@@ -206,16 +202,11 @@ namespace Mod6
                 // Помечаем, что частица внутри радара (для подсветки)
                 if (particle is ParticleColorful colorful)
                 {
-                    colorful.InColorPoint = true;   // это поле добавим ниже
+                    colorful.InColorPoint = true;   
                     colorful.ColorPoint = this.СolorP;
                 }
             }
-            //else
-            //{
-            //    // Если частица вне зоны – снимаем пометку
-            //    if (particle is ParticleColorful colorful)
-            //        colorful.InColorPoint = false;
-            //}
+            
         }
 
         public override void Render(Graphics g)

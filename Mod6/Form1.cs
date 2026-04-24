@@ -27,12 +27,12 @@ namespace Mod6
                 GravitationY = 0.25f
             };
 
-            // ÐÀÄÀÐ
-            //emitter.impactPoints.Add(new RadarPoint
-            //{
-            //    X = picDisplay.Width / 2,
-            //    Y = picDisplay.Height / 2
-            //});
+            //ÐÀÄÀÐ
+            emitter.impactPoints.Add(new RadarPoint
+            {
+                X = picDisplay.Width / 2+100,
+                Y = picDisplay.Height / 2+100
+            });
 
             emitter.impactPoints.Add(new ColorPoint
             {

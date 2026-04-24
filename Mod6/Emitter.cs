@@ -97,6 +97,7 @@ namespace Mod6
             //        break;
             //    }
             //}
+
             while (particles.Count < ParticlesCount)
             {
                 var newParticle = CreateParticle();
@@ -163,6 +164,7 @@ namespace Mod6
                 {
                     colorful.InColorPoint = false;
                     colorful.InRadar = false;
+
                     // ColorPoint не нужно сбрасывать – при следующем попадании перезапишется
                 }
 

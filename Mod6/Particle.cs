@@ -99,6 +99,11 @@ namespace Mod6
                 {
                     color = MixColor(ToColor, FromColor, k);
                 }
+                if (InRadar)
+                {
+                    color = Color.Green;
+                }
+                
                 
                 var b = new SolidBrush(color);
 
