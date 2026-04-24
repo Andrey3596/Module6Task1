@@ -45,15 +45,17 @@ namespace Mod6
             {
                 if (particle.Life <= 0) // если частицы умерла
                 {
-                    /* 
-                     * то проверяем надо ли создать частицу
-                     */
-                    if (particlesToCreate > 0)
-                    {
-                        /* у нас как сброс частицы равносилен созданию частицы */
-                        particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
-                        ResetParticle(particle);
-                    }
+
+                    //if (particlesToCreate > 0)
+                    //{
+                    //    /* у нас как сброс частицы равносилен созданию частицы */
+                    //    particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
+                    //    ResetParticle(particle);
+                    //}
+   
+                    ResetParticle(particle);
+                    continue;
+
                 }
                 else
                 {
@@ -73,27 +75,33 @@ namespace Mod6
                 }
             }
 
-            while (particlesToCreate >= 1)
-            {
-                particlesToCreate -= 1;
-                var particle = CreateParticle();
-                ResetParticle(particle);
-                particles.Add(particle);
-            }
+            //while (particlesToCreate >= 1)
+            //{
+            //    particlesToCreate -= 1;
+            //    var particle = CreateParticle();
+            //    ResetParticle(particle);
+            //    particles.Add(particle);
+            //}
             // добавил генерацию частиц
             // генерирую не более 10 штук за тик
-            for (var i = 0; i < 10; ++i)
+            //for (var i = 0; i < 10; ++i)
+            //{
+            //    if (particles.Count < ParticlesCount)
+            //    {
+            //        var particle = CreateParticle(); // и собственно теперь тут его вызываем
+            //        ResetParticle(particle);
+            //        particles.Add(particle);
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
+            //}
+            while (particles.Count < ParticlesCount)
             {
-                if (particles.Count < ParticlesCount)
-                {
-                    var particle = CreateParticle(); // и собственно теперь тут его вызываем
-                    ResetParticle(particle);
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break;
-                }
+                var newParticle = CreateParticle();
+                ResetParticle(newParticle);
+                particles.Add(newParticle);
             }
         }
 
