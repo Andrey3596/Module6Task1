@@ -30,8 +30,8 @@ namespace Mod6
             //РАДАР
             emitter.impactPoints.Add(new RadarPoint
             {
-                X = picDisplay.Width / 2+100,
-                Y = picDisplay.Height / 2+100
+                X = picDisplay.Width / 2 + 100,
+                Y = picDisplay.Height / 2 + 100
             });
 
             emitter.impactPoints.Add(new ColorPoint
@@ -77,7 +77,7 @@ namespace Mod6
             emitter.impactPoints.Add(new DelitePoint
             {
                 X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2+100
+                Y = picDisplay.Height / 2 + 100
             });
 
             //// гравитон
@@ -152,6 +152,19 @@ namespace Mod6
             picDisplay.Invalidate();
         }
 
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            var delitePoint = new DelitePoint
+            {
+                X = e.X,
+                Y = e.Y,
+                Radar = 50
+            };
+            emitter.impactPoints.Add(delitePoint);
+        }
+
+
+
         //private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         //{
         //    // это не трогаем
@@ -181,5 +194,7 @@ namespace Mod6
         //{
         //    point2.Power = tbGraviton2.Value;
         //}
+
+
     }
 }

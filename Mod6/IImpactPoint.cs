@@ -186,11 +186,11 @@ namespace Mod6
 
         public ColorPoint()
         {
-            // Генерируем насыщенный цвет (например, R, G, B от 100 до 255)
+            // Генерируем насыщенный цвет
             СolorP = Color.FromArgb(
-                rand.Next(100, 256),
-                rand.Next(100, 256),
-                rand.Next(100, 256)
+                rand.Next(0, 256),
+                rand.Next(0, 256),
+                rand.Next(0, 256)
             );
         }
         public override void ImpactParticle(Particle particle)
