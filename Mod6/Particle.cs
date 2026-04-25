@@ -96,10 +96,12 @@ namespace Mod6
                     // подсветка – ярко-зелёный, не зависящий от жизни
                     color = ColorPoint;
                 }
+
                 else
                 {
                     color = MixColor(ToColor, FromColor, k);
                 }
+
                 if (InRadar)
                 {
                     color = Color.Green;

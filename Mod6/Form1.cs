@@ -1,4 +1,5 @@
 using static Mod6.Emitter;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Mod6
 {
@@ -14,6 +15,9 @@ namespace Mod6
         //GravityPoint point1; // добавил поле под первую точку
         //GravityPoint point2; // добавил поле под вторую точку
 
+        RadarPoint radarPoint;
+        ColorPoint colorPointOne;
+        ColorPoint colorPointTwo;
 
         public Form1()
         {
@@ -28,48 +32,54 @@ namespace Mod6
             };
 
             //–јƒј–
-            emitter.impactPoints.Add(new RadarPoint
+            radarPoint = new RadarPoint
             {
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2 + 100
-            });
+            };
+            emitter.impactPoints.Add(radarPoint);
 
-            emitter.impactPoints.Add(new ColorPoint
+            colorPointOne = new ColorPoint
             {
                 X = picDisplay.Width / 2,
                 Y = picDisplay.Height / 2 - 100
-            });
+            };
+            emitter.impactPoints.Add(colorPointOne);
 
-            emitter.impactPoints.Add(new ColorPoint
+
+            colorPointTwo = new ColorPoint
             {
                 X = picDisplay.Width / 2 + 110,
                 Y = picDisplay.Height / 2 - 100
-            });
-            emitter.impactPoints.Add(new ColorPoint
-            {
-                X = picDisplay.Width / 2 - 110,
-                Y = picDisplay.Height / 2 - 100
-            });
-            emitter.impactPoints.Add(new ColorPoint
-            {
-                X = picDisplay.Width / 2 + 220,
-                Y = picDisplay.Height / 2 - 100
-            });
-            emitter.impactPoints.Add(new ColorPoint
-            {
-                X = picDisplay.Width / 2 - 220,
-                Y = picDisplay.Height / 2 - 100
-            });
-            emitter.impactPoints.Add(new ColorPoint
-            {
-                X = picDisplay.Width / 2 + 330,
-                Y = picDisplay.Height / 2 - 100
-            });
-            emitter.impactPoints.Add(new ColorPoint
-            {
-                X = picDisplay.Width / 2 - 330,
-                Y = picDisplay.Height / 2 - 100
-            });
+            };
+            emitter.impactPoints.Add(colorPointTwo);
+
+
+            //emitter.impactPoints.Add(new ColorPoint
+            //{
+            //    X = picDisplay.Width / 2 - 110,
+            //    Y = picDisplay.Height / 2 - 100
+            //});
+            //emitter.impactPoints.Add(new ColorPoint
+            //{
+            //    X = picDisplay.Width / 2 + 220,
+            //    Y = picDisplay.Height / 2 - 100
+            //});
+            //emitter.impactPoints.Add(new ColorPoint
+            //{
+            //    X = picDisplay.Width / 2 - 220,
+            //    Y = picDisplay.Height / 2 - 100
+            //});
+            //emitter.impactPoints.Add(new ColorPoint
+            //{
+            //    X = picDisplay.Width / 2 + 330,
+            //    Y = picDisplay.Height / 2 - 100
+            //});
+            //emitter.impactPoints.Add(new ColorPoint
+            //{
+            //    X = picDisplay.Width / 2 - 330,
+            //    Y = picDisplay.Height / 2 - 100
+            //});
 
 
 
@@ -163,21 +173,47 @@ namespace Mod6
             emitter.impactPoints.Add(delitePoint);
         }
 
+        private void PicDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            // ”величиваем или уменьшаем диаметр на 10
+            radarPoint.Radar += e.Delta > 0 ? 10 : -10;
+            // „тобы избежать отрицательного или нулевого диаметра, можно добавить минимальную проверку:
+            if (radarPoint.Radar < 30) radarPoint.Radar = 30;
+            // ћаксимум можно не ставить, но тогда круг станет огромным.
+            picDisplay.Invalidate();
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            //radarPoint.X = e.X;
+            //radarPoint.Y = e.Y;
+        }
+
+        private void trackBarXOne_Scroll(object sender, EventArgs e)
+        {
+            colorPointOne.X = trackBarXOne.Value;
+        }
+
+        private void trackBarYOne_Scroll(object sender, EventArgs e)
+        {
+            colorPointOne.Y = trackBarYOne.Value;
+        }
+
+        private void trackBarXTwo_Scroll(object sender, EventArgs e)
+        {
+            colorPointTwo.X = trackBarXTwo.Value;
+        }
+
+        private void trackBarYTwo_Scroll(object sender, EventArgs e)
+        {
+            colorPointTwo.Y = trackBarYTwo.Value;
+        }
 
 
-        //private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    // это не трогаем
-        //    foreach (var emitter in emitters)
-        //    {
-        //        emitter.MousePositionX = e.X;
-        //        emitter.MousePositionY = e.Y;
-        //    }
 
-        //    // а тут передаем положение мыши, в положение гравитона
-        //    //point2.X = e.X;
-        //    //point2.Y = e.Y;
-        //}
+
+
+
 
         //private void tbDirection_Scroll(object sender, EventArgs e)
         //{
