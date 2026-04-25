@@ -72,6 +72,7 @@ namespace Mod6
          public Color ColorPoint;
          public bool InRadar = false;
          public bool InColorPoint = false;
+         public bool InDead = false;
 
         // для смеси цветов
         public static Color MixColor(Color color1, Color color2, float k)

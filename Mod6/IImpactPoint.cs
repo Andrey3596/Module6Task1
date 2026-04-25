@@ -133,11 +133,13 @@ namespace Mod6
             if (!(r + particle.Radius < Radar / 2)) // если частица оказалось внутри окружности
             {
                 // Помечаем, что частица внутри радара (для подсветки)
-                if (colorful.InRadar)
+                if ((colorful.InRadar && !colorful.InDead) || (colorful.InRadar && colorful.InDead))
                 {
-                    colorful.InRadar = false;   // это поле добавим ниже
+                    colorful.InRadar = false;
+                    colorful.InDead = false;
                     count--;
                 }
+                
             }
         }
         

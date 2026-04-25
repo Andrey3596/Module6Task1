@@ -163,7 +163,8 @@ namespace Mod6
                 if (particle is ParticleColorful colorful)
                 {
                     colorful.InColorPoint = false;
-                    colorful.InRadar = false;
+                    
+                    colorful.InDead = true;
 
                     // ColorPoint не нужно сбрасывать – при следующем попадании перезапишется
                 }
