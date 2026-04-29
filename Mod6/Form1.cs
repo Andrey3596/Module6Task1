@@ -12,8 +12,6 @@ namespace Mod6
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; // добавим поле дл€ эмиттера
 
-        //GravityPoint point1; // добавил поле под первую точку
-        //GravityPoint point2; // добавил поле под вторую точку
 
         RadarPoint radarPoint;
         ColorPoint colorPointOne;
@@ -60,26 +58,7 @@ namespace Mod6
             //    X = picDisplay.Width / 2 - 110,
             //    Y = picDisplay.Height / 2 - 100
             //});
-            //emitter.impactPoints.Add(new ColorPoint
-            //{
-            //    X = picDisplay.Width / 2 + 220,
-            //    Y = picDisplay.Height / 2 - 100
-            //});
-            //emitter.impactPoints.Add(new ColorPoint
-            //{
-            //    X = picDisplay.Width / 2 - 220,
-            //    Y = picDisplay.Height / 2 - 100
-            //});
-            //emitter.impactPoints.Add(new ColorPoint
-            //{
-            //    X = picDisplay.Width / 2 + 330,
-            //    Y = picDisplay.Height / 2 - 100
-            //});
-            //emitter.impactPoints.Add(new ColorPoint
-            //{
-            //    X = picDisplay.Width / 2 - 330,
-            //    Y = picDisplay.Height / 2 - 100
-            //});
+            
 
 
 
@@ -90,64 +69,11 @@ namespace Mod6
                 Y = picDisplay.Height / 2 + 100
             });
 
-            //// гравитон
-            //emitter.impactPoints.Add(new GravityPoint
-            //{
-            //    X = (float)(picDisplay.Width * 0.25),
-            //    Y = picDisplay.Height / 2
-            //});
-
-            //// в центре антигравитон
-            //emitter.impactPoints.Add(new AntiGravityPoint
-            //{
-            //    X = picDisplay.Width / 2,
-            //    Y = picDisplay.Height / 2
-            //});
-
-            //// снова гравитон
-            //emitter.impactPoints.Add(new GravityPoint
-            //{
-            //    X = (float)(picDisplay.Width * 0.75),
-            //    Y = picDisplay.Height / 2
-            //});
-
-
-            //this.emitter = new Emitter // создаю эмиттер и прив€зываю его к полю emitter
-            //{
-            //    Direction = 0,
-            //    Spreading = 10,
-            //    SpeedMin = 10,
-            //    SpeedMax = 10,
-            //    ColorFrom = Color.Gold,
-            //    ColorTo = Color.FromArgb(0, Color.Red),
-            //    ParticlesPerTick = 10,
-            //    X = picDisplay.Width / 2,
-            //    Y = picDisplay.Height / 2,
-            //};
-
-            //emitters.Add(this.emitter); // все равно добавл€ю в список emitters, чтобы он рендерилс€ и обновл€лс€
-
-
-            // прив€зываем гравитоны к пол€м
-            //point1 = new GravityPoint
-            //{
-            //    X = picDisplay.Width / 2 + 100,
-            //    Y = picDisplay.Height / 2,
-            //};
-            //point2 = new GravityPoint
-            //{
-            //    X = picDisplay.Width / 2 - 100,
-            //    Y = picDisplay.Height / 2,
-            //};
-
-            // прив€зываем пол€ к эмиттеру
-            //emitter.impactPoints.Add(point1);
-            //emitter.impactPoints.Add(point2);
         }
 
 
 
-        // ну и обработка тика таймера, тут просто декомпозицию выполнили
+        // ну и обработка тика таймера тут просто декомпозицию выполнили
         private void timer1_Tick(object sender, EventArgs e)
         {
             emitter.UpdateState(); // каждый тик обновл€ем систему
@@ -177,9 +103,9 @@ namespace Mod6
         {
             // ”величиваем или уменьшаем диаметр на 10
             radarPoint.Radar += e.Delta > 0 ? 10 : -10;
-            // „тобы избежать отрицательного или нулевого диаметра, можно добавить минимальную проверку:
+            // „тобы избежать отрицательного или нулевого диаметра
             if (radarPoint.Radar < 30) radarPoint.Radar = 30;
-            // ћаксимум можно не ставить, но тогда круг станет огромным.
+            
             picDisplay.Invalidate();
         }
 
@@ -209,27 +135,6 @@ namespace Mod6
             colorPointTwo.Y = trackBarYTwo.Value;
         }
 
-
-
-
-
-
-
-        //private void tbDirection_Scroll(object sender, EventArgs e)
-        //{
-        //    emitter.Direction = tbDirection.Value; // направлению эмиттера присваиваем значение ползунка 
-        //    lblDirection.Text = $"{tbDirection.Value}∞"; // добавил вывод значени€
-        //}
-
-        //private void tbGraviton_Scroll(object sender, EventArgs e)
-        //{
-        //    point1.Power = tbGraviton.Value;
-        //}
-
-        //private void tbGraviton2_Scroll(object sender, EventArgs e)
-        //{
-        //    point2.Power = tbGraviton2.Value;
-        //}
 
 
     }
