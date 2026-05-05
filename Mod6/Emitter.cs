@@ -34,6 +34,7 @@ namespace Mod6
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
 
+        public bool InDead = false;
 
         public int ParticlesPerTick = 1;
 
@@ -41,21 +42,39 @@ namespace Mod6
         {
             int particlesToCreate = ParticlesPerTick;
 
-            foreach (var particle in particles)
+            for (int i = particles.Count - 1; i >= 0; i--)
             {
-                if (particle.Life <= 0) // если частицы умерла
+                var particle = particles[i];
+
+                if (particle.Life <= 0)
                 {
+                    
+                    if (particles.Count > ParticlesCount)
+                    {
+                        
+                        if (particle is ParticleColorful colorful)
+                        {
+                            colorful.InColorPoint = false;
+                            colorful.InReset = false;
 
-                    //if (particlesToCreate > 0)
-                    //{
-                    //    /* у нас как сброс частицы равносилен созданию частицы */
-                    //    particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
-                    //    ResetParticle(particle);
-                    //}
-   
-                    ResetParticle(particle);
-                    continue;
+                            if (colorful.InRadar)
+                            {
+                                InDead = true;
+                                
+                            }
 
+                            colorful.InRadar = false;
+
+                        }
+                        particles.RemoveAt(i);
+                        continue;
+                    }
+                    else
+                    {
+                        
+                        ResetParticle(particle);
+                        continue;
+                    }
                 }
                 else
                 {
@@ -74,6 +93,7 @@ namespace Mod6
                     particle.SpeedY += GravitationY;
                 }
             }
+                
 
             //while (particlesToCreate >= 1)
             //{
@@ -97,6 +117,8 @@ namespace Mod6
             //        break;
             //    }
             //}
+            
+
 
             while (particles.Count < ParticlesCount)
             {
@@ -142,12 +164,15 @@ namespace Mod6
             
         }
 
+        
+
         /* добавил метод */
         public virtual Particle CreateParticle()
         {
             var particle = new ParticleColorful();
             particle.FromColor = ColorFrom;
             particle.ToColor = ColorTo;
+            particle.ToColorPoint = ColorTo;
 
             return particle;
         }
@@ -164,9 +189,9 @@ namespace Mod6
                 {
                     colorful.InColorPoint = false;
                     
-                    colorful.InDead = true;
+                    colorful.InReset = true;
 
-                    // ColorPoint не нужно сбрасывать – при следующем попадании перезапишется
+                    
                 }
 
                 // а теперь тут уже подкручиваем параметры движения

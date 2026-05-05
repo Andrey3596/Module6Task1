@@ -37,6 +37,7 @@ namespace Mod6
             };
             emitter.impactPoints.Add(radarPoint);
 
+
             colorPointOne = new ColorPoint
             {
                 X = picDisplay.Width / 2,
@@ -44,24 +45,12 @@ namespace Mod6
             };
             emitter.impactPoints.Add(colorPointOne);
 
-
             colorPointTwo = new ColorPoint
             {
                 X = picDisplay.Width / 2 + 110,
                 Y = picDisplay.Height / 2 - 100
             };
             emitter.impactPoints.Add(colorPointTwo);
-
-
-            //emitter.impactPoints.Add(new ColorPoint
-            //{
-            //    X = picDisplay.Width / 2 - 110,
-            //    Y = picDisplay.Height / 2 - 100
-            //});
-            
-
-
-
 
             emitter.impactPoints.Add(new DelitePoint
             {
@@ -101,11 +90,44 @@ namespace Mod6
 
         private void PicDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
-            // ”величиваем или уменьшаем диаметр на 10
-            radarPoint.Radar += e.Delta > 0 ? 10 : -10;
-            // „тобы избежать отрицательного или нулевого диаметра
-            if (radarPoint.Radar < 30) radarPoint.Radar = 30;
+            //// ”величиваем или уменьшаем диаметр на 10
+            //radarPoint.Radar += e.Delta > 0 ? 10 : -10;
+            //// „тобы избежать отрицательного или нулевого диаметра
+            //if (radarPoint.Radar < 30) radarPoint.Radar = 30;
+
             
+            foreach (var point in emitter.impactPoints)
+            {
+                
+                float dx = point.X - e.X;
+                float dy = point.Y - e.Y;
+                float distance = (float)Math.Sqrt(dx * dx + dy * dy);
+
+                
+                int currentRadius = 0;
+
+                if (point is RadarPoint rp) currentRadius = rp.Radar;
+                else if (point is ColorPoint cp) currentRadius = cp.Radar;
+                else if (point is DelitePoint dp) currentRadius = dp.Radar;
+                else continue;
+
+                
+                if (distance <= currentRadius / 2)
+                {
+                    int delta = e.Delta > 0 ? 10 : -10;
+
+                    
+                    if (point is RadarPoint radar)
+                        radar.Radar = Math.Max(30, radar.Radar + delta);
+                    else if (point is ColorPoint color)
+                        color.Radar = Math.Max(20, color.Radar + delta);
+                    else if (point is DelitePoint del)
+                        del.Radar = Math.Max(20, del.Radar + delta);
+
+                    break;
+                }
+            }
+
             picDisplay.Invalidate();
         }
 
@@ -135,7 +157,13 @@ namespace Mod6
             colorPointTwo.Y = trackBarYTwo.Value;
         }
 
+        
 
+        private void trackBarCol_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesCount = trackBarCol.Value;
+        }
 
+        
     }
 }

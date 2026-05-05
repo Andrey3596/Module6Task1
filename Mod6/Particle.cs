@@ -69,9 +69,14 @@ namespace Mod6
             // два новых поля под цвет начальный и конечный
          public Color FromColor;
          public Color ToColor;
+
          public Color ColorPoint;
+         public Color FromColorPoint;
+         public Color ToColorPoint;
+
          public bool InRadar = false;
          public bool InColorPoint = false;
+         public bool InReset = false;
          public bool InDead = false;
 
         // для смеси цветов
@@ -94,7 +99,8 @@ namespace Mod6
                 if (InColorPoint)
                 {
                     // подсветка – ярко-зелёный, не зависящий от жизни
-                    color = ColorPoint;
+                    //color = ColorPoint;
+                    color = MixColor(ToColorPoint, FromColorPoint, k);
                 }
 
                 else

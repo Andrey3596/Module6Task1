@@ -119,27 +119,28 @@ namespace Mod6
 
             ParticleColorful colorful = particle as ParticleColorful;
 
-            if (r + particle.Radius < Radar / 2 ) // если частица оказалось внутри окружности
+            if (r + particle.Radius < Radar / 2 ) 
             {
-                // Помечаем, что частица внутри радара (для подсветки)
+                
                 if (!colorful.InRadar)
                 {
-                    colorful.InRadar = true;   // это поле добавим ниже
+                    colorful.InRadar = true;   
                     count++;
 
                 }
             }
-
-            if (!(r + particle.Radius < Radar / 2)) // если частица оказалось внутри окружности
+            else
             {
-                // Помечаем, что частица внутри радара (для подсветки)
-                if ((colorful.InRadar && !colorful.InDead) || (colorful.InRadar && colorful.InDead))
+
+                if ((colorful.InRadar && !colorful.InReset) || (colorful.InRadar && colorful.InReset))
                 {
                     colorful.InRadar = false;
-                    colorful.InDead = false;
+                    colorful.InReset = false;
                     count--;
                 }
-                
+                Emitter.Inde
+
+
             }
         }
         
@@ -205,7 +206,7 @@ namespace Mod6
                 if (particle is ParticleColorful colorful)
                 {
                     colorful.InColorPoint = true;   
-                    colorful.ColorPoint = this.СolorP;
+                    colorful.FromColorPoint = this.СolorP;
                 }
             }
             
