@@ -119,6 +119,7 @@ namespace Mod6
                 g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
 
                 b.Dispose();
-            }
+
+        }
      }
 }

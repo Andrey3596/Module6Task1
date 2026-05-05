@@ -174,6 +174,7 @@
             trackBarCol.Name = "trackBarCol";
             trackBarCol.Size = new Size(104, 45);
             trackBarCol.TabIndex = 16;
+            trackBarCol.Value = 500;
             trackBarCol.Scroll += trackBarCol_Scroll;
             // 
             // Form1
