@@ -111,7 +111,7 @@
             X.Name = "X";
             X.Size = new Size(14, 15);
             X.TabIndex = 9;
-            X.Text = "X";            
+            X.Text = "X";
             // 
             // label1
             // 
@@ -156,16 +156,16 @@
             label5.Name = "label5";
             label5.Size = new Size(74, 15);
             label5.TabIndex = 14;
-            label5.Text = "Второй кргу";
+            label5.Text = "Второй круг";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(486, 444);
             label6.Name = "label6";
-            label6.Size = new Size(88, 15);
+            label6.Size = new Size(95, 15);
             label6.TabIndex = 15;
-            label6.Text = "Скоько частиц";
+            label6.Text = "Сколько частиц";
             // 
             // trackBarCol
             // 
@@ -196,7 +196,6 @@
             Controls.Add(picDisplay);
             Name = "Form1";
             Text = "Form1";
-            
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBarXOne).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBarYOne).EndInit();

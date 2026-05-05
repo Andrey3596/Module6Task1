@@ -95,15 +95,15 @@ namespace Mod6
             //// Чтобы избежать отрицательного или нулевого диаметра
             //if (radarPoint.Radar < 30) radarPoint.Radar = 30;
 
-            
+
             foreach (var point in emitter.impactPoints)
             {
-                
+
                 float dx = point.X - e.X;
                 float dy = point.Y - e.Y;
                 float distance = (float)Math.Sqrt(dx * dx + dy * dy);
 
-                
+
                 int currentRadius = 0;
 
                 if (point is RadarPoint rp) currentRadius = rp.Radar;
@@ -111,12 +111,12 @@ namespace Mod6
                 else if (point is DelitePoint dp) currentRadius = dp.Radar;
                 else continue;
 
-                
+
                 if (distance <= currentRadius / 2)
                 {
                     int delta = e.Delta > 0 ? 10 : -10;
 
-                    
+
                     if (point is RadarPoint radar)
                         radar.Radar = Math.Max(30, radar.Radar + delta);
                     else if (point is ColorPoint color)
@@ -133,8 +133,8 @@ namespace Mod6
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            //radarPoint.X = e.X;
-            //radarPoint.Y = e.Y;
+            radarPoint.X = e.X;
+            radarPoint.Y = e.Y;
         }
 
         private void trackBarXOne_Scroll(object sender, EventArgs e)
@@ -157,7 +157,7 @@ namespace Mod6
             colorPointTwo.Y = trackBarYTwo.Value;
         }
 
-        
+
 
         private void trackBarCol_Scroll(object sender, EventArgs e)
         {
