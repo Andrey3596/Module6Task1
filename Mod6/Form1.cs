@@ -133,8 +133,8 @@ namespace Mod6
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            radarPoint.X = e.X;
-            radarPoint.Y = e.Y;
+            //radarPoint.X = e.X;
+            //radarPoint.Y = e.Y;
         }
 
         private void trackBarXOne_Scroll(object sender, EventArgs e)

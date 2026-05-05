@@ -242,7 +242,7 @@ namespace Mod6
             float gY = Y - particle.Y;
             double r = Math.Sqrt(gX * gX + gY * gY);
 
-            if (r + particle.Radius < Radar) // если частица оказалось внутри окружности
+            if (r + particle.Radius < Radar / 2) // если частица оказалось внутри окружности
             {
                 
                 particle.Life = 0;
