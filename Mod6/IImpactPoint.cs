@@ -138,7 +138,11 @@ namespace Mod6
                     colorful.InReset = false;
                     count--;
                 }
-                Emitter.Inde
+                if (Emitter.GetInDead())
+                {
+                    count--;
+                    Emitter.SetInDead(false);
+                }
 
 
             }
